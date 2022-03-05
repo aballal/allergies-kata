@@ -9,17 +9,12 @@ enum Allergens {
     cats,
 }
 
-function decimalToBinaryArray(value: number): Array<0 | 1> {
-    const unsignedBits = [...(value >>> 0).toString(2)].map(e => parseInt(e));
-    return new Array(8 - unsignedBits.length).fill(0).concat(unsignedBits);
-}
-
 export class Allergies {
     private allergies: string[];
 
-    constructor(value: number) {
-        const littleEndianUnsignedBinaryArray = decimalToBinaryArray(value >= 256 ? value % 256 : value ).reverse();
-        this.allergies = littleEndianUnsignedBinaryArray.map((value, index) => value === 1 ? Allergens[index] : undefined).filter(Boolean);
+    constructor(_value: number) {
+        const value = _value % 256;
+        this.allergies = [0,1,2,3,4,5,6,7].map(i => (2**i & value) > 0 ? Allergens[i] : undefined).filter(Boolean);
     }
 
     public list(): string[] {
