@@ -1,22 +1,24 @@
 import {Allergies} from "../src/allergies";
 
-describe.skip('allergicTo', () => {
+describe('allergicTo', () => {
     it('no allergies means not allergic', () => {
         const allergies = new Allergies(0);
         expect(allergies.allergicTo('peanuts')).toBeFalsy()
         expect(allergies.allergicTo('cats')).toBeFalsy()
         expect(allergies.allergicTo('strawberries')).toBeFalsy()
-    })
+    });
+
     it('is allergic to eggs', () => {
       const allergies = new Allergies(1);
       expect(allergies.allergicTo('eggs')).toBeTruthy();
     });
+
     it('allergic to eggs in addition to other stuff', () => {
         const allergies = new Allergies(5)
         expect(allergies.allergicTo('eggs')).toBeTruthy()
         expect(allergies.allergicTo('shellfish')).toBeTruthy()
         expect(allergies.allergicTo('strawberries')).toBeFalsy()
-    })
+    });
 });
 
 describe('list', () => {

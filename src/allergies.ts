@@ -27,6 +27,6 @@ export class Allergies {
     }
 
     public allergicTo(allergen: string) {
-        throw new Error('Implement this method!');
+        return this.allergies.includes(allergen);
     }
 }
